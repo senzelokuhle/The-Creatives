@@ -21,7 +21,7 @@ namespace ModelsLogic
         public System.DateTime Start { get; set; }
         public Nullable<System.DateTime> End { get; set; }
 
-        [Display(Name = "Urgency")]
+        [Display(Name = "Urgencie")]
         public string ThemeColor { get; set; }
 
         public bool IsFullDay { get; set; }
