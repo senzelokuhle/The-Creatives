@@ -11,7 +11,7 @@ namespace ModelsLogic
         [Key]
         public int EventID { get; set; }
 
-        [Display(Name = "Fullame")]
+        [Display(Name = "FullName")]
         [Required]
         public string Subject { get; set; }
 
@@ -21,7 +21,7 @@ namespace ModelsLogic
         public System.DateTime Start { get; set; }
         public Nullable<System.DateTime> End { get; set; }
 
-        [Display(Name = "Urgen")]
+        [Display(Name = "Urgency")]
         public string ThemeColor { get; set; }
 
         public bool IsFullDay { get; set; }
