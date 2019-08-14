@@ -1,0 +1,141 @@
+﻿@model IEnumerable<ModelsLogic.PatientRecord>
+
+@{
+    Layout = null;
+}
+
+@{
+    ViewBag.Title = "ViewAll";
+    Layout = null;
+}
+
+<!--Data Table-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.js"></script>
+<table class="table table-striped table-condensed" id="studentTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender._Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CellPhone)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.HomeTelephone)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Employer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NextOfKin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomePhone)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.EmergencyContact)
+            </th>*@
+           
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender._Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdentityNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CellPhone)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.HomeTelephone)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NextOfKin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomePhone)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.EmergencyContact)
+                </td>*@
+                <td>
+                    @*<a class="btn btn-primary btn-sm " onclick="Edit('@Url.Action("AddOrEdit","Invoice",new { id = @item.InvoiceId })')"><i class="fa fa-pencil fa-lg"></i></a><br /><br />*@
+                    @*@<a class="btn btn-danger btn-sm" onclick="Delete('@Url.Action("Delete", "Invoice", new { id = @item.InvoiceId })')"><i class="fa fa-trash fa-lg"></i></a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+        $('#studentTable').dataTable(
+            {
+                dom: 'Bfrtip',
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    ['10 rows', '25 rows', '50 rows', 'Show all']
+                ],
+                buttons: [
+                    'pageLength', 'csv', 'pdf', 'print'
+                ],
+                language: { search: "" },
+                select: true
+            }
+        );
+        $(".dataTables_filter input").addClass("search-input");
+        $(".dataTables_filter input").attr('placeholder', 'Search');
+        $('#studentTable')
+            .removeClass('display')
+            .addClass('table table-striped table-hover');
+</script>

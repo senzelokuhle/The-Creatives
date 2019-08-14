@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ModelsLogic.Gender>
+
+@{
+    ViewBag.Title = "GetGender";
+}
+
+<h2>GetGender</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddGender")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model._Gender)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item._Gender)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GenderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GenderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GenderId })
+        </td>
+    </tr>
+}
+
+</table>

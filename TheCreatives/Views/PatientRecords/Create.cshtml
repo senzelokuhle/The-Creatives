@@ -1,0 +1,244 @@
+﻿@model ModelsLogic.PatientRecord
+
+@{
+    ViewBag.Title = "Patient";
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("Create", "PatientRecords", FormMethod.Post, new { onSubmit = "return jQueryAjaxPost(this);", data_restUrl = Url.Action("Create", "PatientRecords", new { Id = 0 }) }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-md-6">
+        <div class="form-horizontal">
+            @if (TempData["SM"] != null)
+            {
+                <div class="alert alert-success">
+                    <center><strong>@TempData["SM"]</strong></center>
+                </div>
+            }
+            @if (TempData["EM"] != null)
+            {
+                <div class="alert alert-warning">
+                    <center><strong>@TempData["EM"]</strong></center>
+                </div>
+            }
+            @if (TempData["UM"] != null)
+            {
+                <div class="alert alert-danger">
+                    <center><strong>@TempData["UM"]</strong></center>
+                </div>
+            }
+            <div style="color:lightseagreen">
+                <h3 style="padding-left:150px">Personal Information</h3>
+            </div><br />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PatientName, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GenderId, "Gender", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.DropDownList("GenderId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GenderId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdentityNo, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.IdentityNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IdentityNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @*<input type="text" id="address" name="Address" class="form-control" />*@
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "address" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CellPhone, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.CellPhone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CellPhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HomeTelephone, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.HomeTelephone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HomeTelephone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div>
+                <h3 style="color:lightseagreen">Employers Details</h3>
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Employer, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Employer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Employer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.WorkNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.WorkNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.WorkNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <center><h3 style="color:lightseagreen">Medical Aid Details</h3></center>
+        <div class="form-group" style="padding-top:28px">
+            @Html.LabelFor(model => model.InsuranceName, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.InsuranceName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InsuranceName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-top:50px">
+            @Html.LabelFor(model => model.PolicyNumber, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.PolicyNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PolicyNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-top:50px">
+            @Html.LabelFor(model => model.InsuranceNumber, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.InsuranceNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InsuranceNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style="padding-top:88px">
+            <div style="padding-left:150px">
+                <center><h3 style="color:lightseagreen">Emergency Contact</h3></center>
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-top:30px">
+            @Html.LabelFor(model => model.EmergencyContact, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.EmergencyContact, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmergencyContact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group" style="padding-top:60px">
+            @Html.LabelFor(model => model.NextOfKin, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.NextOfKin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NextOfKin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="padding-top:60px">
+            @Html.LabelFor(model => model.HomePhone, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.HomePhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HomePhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br /><br />
+    </div>
+    <center> <input type="submit" value="Register" class="btn btn-success" /></center>
+
+
+
+
+}
+
+<script language="javascript" type="text/javascript">
+    $('.from-date-picker').datepicker({
+        beforeShowDay: function (date) {
+            var dayOfWeek = date.getDay();
+            // 0 : Sunday, 1 : Monday, ...
+            if (dayOfWeek == 0 || dayOfWeek == 0) return [false];
+            else return [true];
+        },
+        controlType: 'select',
+        oneLine: true,
+        minDate: 0,
+        minTime: 0,
+        disableTimeRanges: [['4:00', '4:30'], ['4:30', '8:00']]
+    });
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-2lihjhUFJcusXhrt0tIPftjNCZeK6mg&libraries=places&callback=initAutocomplete" async defer></script>
+<script>
+        document.getElementById("address").value = "";
+        document.getElementById("code").value = "";
+        var placeSearch, autocomplete;
+        var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'short_name',
+            country: 'long_name',
+            postal_code: 'short_name'
+        };
+        function initAutocomplete() {
+            // Create the autocomplete object, restricting the search to geographical
+            // location types.
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById('address')),
+                { types: ['geocode'] });
+
+            // When the user selects an address from the dropdown, populate the address
+            // fields in the form.
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+        function fillInAddress() {
+            // Get the place details from the autocomplete object.
+            var place = autocomplete.getPlace();
+
+            for (var component in componentForm) {
+                document.getElementById(component).value = '';
+                document.getElementById(component).disabled = false;
+            }
+            // Get each component of the address from the place details
+            // and fill the corresponding field on the form.
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    document.getElementById(addressType).value = val;
+                }
+            }
+            //set the zipcode when the address is changed
+            //document.getElementById("code").value = document.getElementById("postal_code").value;
+        }
+</script>

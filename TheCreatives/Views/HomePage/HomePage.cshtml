@@ -1,0 +1,800 @@
+﻿ @{
+    ViewBag.Title = "Home 2 Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Multi-Med | Home 2 Page</title>
+
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="/medic/plugins/slick/slick.css">
+    <link rel="stylesheet" href="/medic/plugins/slick/slick-theme.css">
+    <!-- FancyBox -->
+    <link rel="stylesheet" href="/medic/plugins/fancybox/jquery.fancybox.min.css">
+
+    <!-- Stylesheets -->
+    <link href="/medic/css/style.css" rel="stylesheet">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/medic/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/medic/images/favicon.ico" type="image/x-icon">
+
+    <!--Datepicker-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+    <!--Timepicker-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.1/jquery-ui-sliderAccess.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.1/jquery-ui-timepicker-addon.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.1/jquery-ui-timepicker-addon.js"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <!-- <div class="preloader"></div> -->
+        <!-- Preloader -->
+        <!--header top-->
+        <div class="header-top">
+            <div class="container clearfix">
+                <div class="top-left">
+                    <h6>Opening Hours : Tuesday to Saturday - 9am to 14pm</h6>
+                </div>
+
+                <div class="top-right" style="padding-top:0px">
+                    @if (User.Identity != null)
+                    {
+                        <div>
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <!--header top-->
+        <!--Header Upper-->
+        <section class="header-uper">
+            <div class="container clearfix">
+                <div class="logo">
+                    <figure>
+                        <a href="index.html">
+                            <img src="~/Images/logo.png" alt="" width="250">
+                        </a>
+                    </figure>
+                </div>
+                <div class="right-side">
+                    <ul class="contact-info">
+                        <li class="item">
+                            <div class="icon-box">
+                                <i class="fa fa-envelope-o"></i>
+                            </div>
+                            <strong>Email</strong>
+                            <br>
+                            <a href="#">
+                                <span>info@medic.com</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <div class="icon-box">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <strong>Call Now</strong>
+                            <br>
+                            <span>+ (88017) - 123 - 4567</span>
+                        </li>
+                    </ul>
+                    <div class="link-btn">
+                        <a href="/Appointment/ViewSchedule" class="btn-style-one">Appoinment</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Header Upper-->
+        <!--Main Header-->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                            aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:120px">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/Home/HomePage" style="color:white">Home</a></li>
+                        <li class="disabled"><a style="color:white" class="disabled">Specialities</a></li>
+                        <li class="disabled"><a style="color:white" class="disabled">Expert Doctors</a></li>
+                        <li><a href="/Appointment/ViewSchedule" style="color:white">Book Appointment</a></li>
+                        <li class="disabled"><a style="color:white">Products</a></li>
+                        <li><a href="contact.html">About Us</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!--End Main Header -->
+        <!--Page Title-->
+        <div class="hero-slider">
+            <!-- Slider Item -->
+            <div class="slider-item slide1" style="background-image:url(/Images/diagnosist.jpg)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Slide Content Start -->
+                            <div class="content style text-center">
+                                <h2 class="text-white text-bold mb-2">General family wellness</h2>
+                                <p class="tag-text mb-5">
+                                    Take charge of health! Book an appointment at Multi-Medic Durdoc clinnic for regular check-ups.
+                                    Getting and keeping families healthy, is all they have.
+                                </p>
+                                <a href="#" class="btn btn-main btn-white">Explore Options</a>
+                            </div>
+                            <!-- Slide Content End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Item -->
+            <div class="slider-item" style="background-image:url(/Images/dematolog.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Slide Content Start-->
+                            <div class="content style text-right">
+                                <h2 class="text-white">Dermatology<br>Your Health</h2>
+                                <p class="tag-text">
+                                    Give your skin, nails and hair best care by visiting our best specialist.
+                                    Have body of your own choice.
+                                </p>
+                                <a href="#" class="btn btn-main btn-white">About Dermatology</a>
+                            </div>
+                            <!-- Slide Content End-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Item -->
+            <div class="slider-item" style="background-image:url(/Images/cir.jpg)">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Slide Content Start -->
+                            <div class="content text-center style">
+                                <h2 class="text-white text-bold mb-2">Circumcision</h2>
+                                <p class="tag-text mb-5">
+                                    Take circumcision with us to benefet from Easier hygiene, Decreased risk of urinary tract infections,
+                                    Decreased risk of sexually transmitted infections, prevention of penile problems, Decrease risk of penile cancer.<br />
+                                    <a href="shop.html" class="btn btn-main btn-white">More Details</a>
+                            </div>
+                            <!-- Slide Content End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====  End of Page Slider  ====-->
+
+
+        <section class="cta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cta-block">
+                            <div class="emmergency item">
+                                <i class="fa fa-phone"></i>
+                                <h2>Emegency Number</h2>
+                                <a href="#">+27 83 519 5958</a>
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            </div>
+                            <div class="top-doctor item">
+                                <i class="fa fa-stethoscope"></i>
+                                <h2>Hospital Branches</h2>
+                                <p>West-streets durdoc</p>
+                                <p>Mhlanga durdoc</p>
+                                <a href="#" class="btn btn-main">Read more</a>
+                            </div>
+                            <div class="working-time item">
+                                <i class="fa fa-hourglass-o"></i>
+                                <h2>Working Hours</h2>
+                                <ul class="w-hours">
+                                    <li>Mon - Fri  - <span>8:00 - 14:00</span></li>
+                                    <li>Saturday - <span>10:00 - 12:00</span></li>
+                                    <li>Sunday  - <span>Closed</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-tab-section section">
+            <div class="outer-box clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Nav tabs -->
+                            <div class="tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#dormitory" data-toggle="tab">dermatology</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#orthopedic" data-toggle="tab">orthopedic</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#sonogram" data-toggle="tab">sonogram</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#x-ray" data-toggle="tab">circumcision</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#diagnostic" data-toggle="tab">diagnostic</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--Start single tab content-->
+                            <div class="tab-content">
+                                <div class="service-box tab-pane fade in active row" id="dormitory">
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="~/Images/dematolog.jpg" alt="service-image">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contents">
+                                            <div class="section-title">
+                                                <h3>Dermatology</h3>
+                                            </div>
+                                            <div class="text">
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added. then a
+                                                    dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added. then a dental
+                                                    prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                            </div>
+                                            <ul class="content-list">
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Whitening is among the most popular dental
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                            </ul>
+                                            <a href="#" class="btn btn-style-one">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End single tab content-->
+                                <!--Start single tab content-->
+                                <div class="service-box tab-pane fade in" id="orthopedic">
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="medic/images/services/service-two.jpg" alt="service-image">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contents">
+                                            <div class="section-title">
+                                                <h3>orthopedic</h3>
+                                            </div>
+                                            <div class="text">
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added.
+                                                    then a dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added.
+                                                    then a dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                            </div>
+                                            <ul class="content-list">
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Whitening is among the most popular dental
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                            </ul>
+                                            <a href="#" class="btn btn-style-one">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End single tab content-->
+                                <!--Start single tab content-->
+                                <div class="service-box tab-pane fade in" id="sonogram">
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="medic/images/services/service-three.jpg" alt="service-image">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contents">
+                                            <div class="section-title">
+                                                <h3>sonogram</h3>
+                                            </div>
+                                            <div class="text">
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added.
+                                                    then a dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added.
+                                                    then a dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                            </div>
+                                            <ul class="content-list">
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Whitening is among the most popular dental
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                            </ul>
+                                            <a href="#" class="btn btn-style-one">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End single tab content-->
+                                <!--Start single tab content-->
+                                <div class="service-box tab-pane fade in" id="x-ray">
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="~/Images/cir.jpg" alt="service-image">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contents">
+                                            <div class="section-title">
+                                                <h3>circumcision</h3>
+                                            </div>
+                                            <div class="text">
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added.
+                                                    then a dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added.
+                                                    then a dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                            </div>
+                                            <ul class="content-list">
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Whitening is among the most popular dental
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                            </ul>
+                                            <a href="#" class="btn btn-style-one">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End single tab content-->
+                                <!--Start single tab content-->
+                                <div class="service-box tab-pane fade in" id="diagnostic">
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="~/Images/diagnosist.jpg" alt="service-image">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contents">
+                                            <div class="section-title">
+                                                <h3>diagnostic</h3>
+                                            </div>
+                                            <div class="text">
+                                                <p>
+                                                    Are you feeling sick and don't know what sickness are you suffering from?,
+                                                    come and consults with our specialist it would be the best check-up  you have ever had.
+                                                    After a check-up you will get a prescription that goes straight and knock-off the sickness.
+                                                </p>
+                                                <p>
+                                                    The implant fixture is first placed, so that it ilikely to osseointegrate, then a dental prosthetic is added.
+                                                    then a dental prosthetic is added.then a dental pros- thetic is added.
+                                                </p>
+                                            </div>
+                                            <ul class="content-list">
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Whitening is among the most popular dental
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-dot-circle-o"></i>Teeth cleaning is part of oral hygiene and involves
+                                                </li>
+                                            </ul>
+                                            <a href="#" class="btn btn-style-one">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End single tab content-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="team-section section">
+            <div class="container">
+                <div class="section-title text-center">
+                    <h3>
+                        Our Expert
+                        <span>Doctors</span>
+                    </h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem illo, rerum
+                        <br>natus nobis deleniti doloremque minima odit voluptatibus ipsam animi?
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="team-member">
+                            <img src="~/Images/mabaso.jpg" alt="doctor" class="img-responsive">
+                            <div class="contents text-center">
+                                <h4>Dr. MN Mabaso</h4>
+                                <p>General Practictioner</p>
+                                <a href="#" class="btn btn-main">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="team-member">
+                            <img src="~/Images/mbali.jpg" alt="doctor" class="img-responsive">
+                            <div class="contents text-center">
+                                <h4>Dr. Marry Lou</h4>
+                                <p>Surgen</p>
+                                <a href="#" class="btn btn-main">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="team-member">
+                            <img src="~/Images/doc.jpg" alt="doctor" class="img-responsive">
+                            <div class="contents text-center">
+                                <h4>Dr. Sansa Stark</h4>
+                                <p>Dematologist</p>
+                                <a href="#" class="btn btn-main">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="appoinment-section section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="accordion-section">
+                            <div class="section-title">
+                                <h3>FAQ</h3>
+                            </div>
+                            <div class="accordion-holder">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    Why Should I choose Medical Health
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                                                non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                                helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                                vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+                                                heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                                                   aria-controls="collapseTwo">
+                                                    What are the Centre’s visiting hours?
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                                                non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                                helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                                vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+                                                heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                                                   aria-controls="collapseThree">
+                                                    How many visitors are allowed?
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                            <div class="panel-body">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                                                non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                                helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                                vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+                                                heard of them accusamus labore sustainable VHS.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<h3 style="color:black"><strong>CHAT BOX</strong>  </h3>*@
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="padding-top:110px;">
+                       
+                        <style>
+                            div.panel-body {
+                                overflow: scroll;
+                                background: url('http://subtlepatterns.com/patterns/geometry2.png');
+                                padding-top:6%;
+                              
+                            }
+                        </style>
+                     
+                        <div class="chat-panel panel panel-info" style="background-color:darkturquoise">
+                            <div class="panel-heading">
+                                <center>
+                                    <h3>
+                                        Chat Box
+                                        <i class="fa fa-paper-plane fa-fw"></i>
+                                    </h3>
+                                </center>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body" id="chat" style="height:250px;">
+                                <input type="hidden" id="displayname" />
+                                <input type="hidden" id="displayname2" />
+                                <p id="discussion"></p>
+                            </div>
+                            <!-- /.panel-body -->
+                            <div class="panel-footer">
+                                <div class="input-group">
+                                    <input id="message" type="text" name="message" class="form-control input-sm" placeholder="Type your message here..." />
+
+                                    <span class="input-group-btn">
+                                        <input type="button" class="btn btn-warning btn-sm" id="sendmessage" value="Send">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--footer-main-->
+        <footer class="footer-main">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="about-widget">
+                                <div class="footer-logo">
+                                    <figure>
+                                        <a href="index.html">
+                                            <img src="/medic/images/logo-2.png" alt="">
+                                        </a>
+                                    </figure>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, temporibus?</p>
+                                <ul class="location-link">
+                                    <li class="item">
+                                        <i class="fa fa-map-marker"></i>
+                                        <p>Modamba, NY 80021, United States</p>
+                                    </li>
+                                    <li class="item">
+                                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                        <a href="#">
+                                            <p>Support@medic.com</p>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        <p>(88017) +123 4567</p>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <h6>Services</h6>
+                            <ul class="menu-link">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>Orthopadic Liabilities
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>Dental Clinic
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>Dormamu Clinic
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>Psycological Clinic
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>Gynaecological Clinic
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="social-links">
+                                <h6>Recent Posts</h6>
+                                <ul>
+                                    <li class="item">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" src="/medic/images/blog/post-thumb-small.jpg" alt="post-thumb">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="#">Post Title</a></h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" src="/medic/images/blog/post-thumb-small.jpg" alt="post-thumb">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">
+                                                    <a href="#">Post Title</a>
+                                                </h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container clearfix">
+                    <div class="copyright-text">
+                        <p>
+                            &copy; Copyright 2019. All Rights Reserved by
+                            <a href="index.html">Multi-Med & The Creatives</a>
+                        </p>
+                    </div>
+                    <ul class="footer-bottom-link">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="about.html">About</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!--End footer-main-->
+    </div>
+    <!--End pagewrapper-->
+    <!--Scroll to top-->
+    <div class="scroll-to-top scroll-to-target" data-target=".header-top">
+        <span class="icon fa fa-angle-up"></span>
+    </div>
+
+
+    @section scripts {
+        <!--Script references. -->
+        <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
+        <!--Reference the SignalR library. -->
+        <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+        <!--Reference the autogenerated SignalR hub script. -->
+        <script src="~/signalr/hubs"></script>
+        <!--SignalR script to update the chat page and send messages.-->
+    <script>
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call back to display messages.
+            chat.client.addNewMessageToPage = function (name, message) {
+                if (name == "Clerk") {
+                    // Add the message to the page.
+                    $('#discussion').append('<p style="color:green; text-align:left; width:500px"><strong><img = src="https://www.phplivesupport.com/pics/icons/avatars/public/avatar_7.png" title="Atir">'
+                        + ' </strong> ' + htmlEncode(message) + '</p>');
+                }
+                else if (name != "Clerk") {
+                    // Add the message to the page.
+                    $('#discussion').append('<p style="color:blue;text-align:right;"><strong><img = src="https://www.phplivesupport.com/pics/icons/avatars/public/avatar_71.png" title="Peter">'
+                        + ' </strong> ' + htmlEncode(message) + '</p>');
+                }
+            };
+            // Get the user name and store it to prepend to messages.
+            $(function () {
+                if ($('#message').dblclick(function () {
+                    $('#displayname').val(prompt('Enter your name:', ''));
+                }));
+            });
+            //$('#displayname').val(prompt('Enter your name:', ''));
+            // Set initial focus to message input box.
+            $('#message').focus();
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.send($('#displayname').val(), $('#message').val());
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+            });
+        });
+        // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>
+    }
+
+    <script src="/medic/plugins/jquery.js"></script>
+    <script src="/medic/plugins/bootstrap.min.js"></script>
+    <script src="/medic/plugins/bootstrap-select.min.js"></script>
+    <!-- Slick Slider -->
+    <script src="/medic/plugins/slick/slick.min.js"></script>
+    <!-- FancyBox -->
+    <script src="/medic/plugins/fancybox/jquery.fancybox.min.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+    <script src="/medic/plugins/google-map/gmap.js"></script>
+    <script src="/medic/plugins/validate.js"></script>
+    <script src="/medic/plugins/wow.js"></script>
+    <script src="/medic/plugins/jquery-ui.js"></script>
+    <script src="/medic/plugins/timePicker.js"></script>
+    <script src="/medic/js/script.js"></script>
+</body>
+</html>

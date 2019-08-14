@@ -1,0 +1,184 @@
+﻿body {
+    padding-bottom: 1px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+ul.nav.nav-tabs {
+    margin: 10px 0px;
+}
+
+    ul.nav.nav-tabs li:not(.active) a {
+        background-color: #eeeeee;
+        color: grey;
+    }
+
+ul.nav.nav.nav-tabs li.active a {
+    border-top: 3px solid #16a765;
+}
+
+
+.loaderbody {
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background-color: rgba(128,128,128,0.2);
+    z-index: 2147483647;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    top: 45%;
+    left: 40%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+/*page wraper from medic style css*/
+.page-wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    min-width: 300px;
+}
+
+.page-wrapper {
+    overflow: hidden;
+}
+
+/*End of page wraper*/
+
+
+
+.header-top {
+    background: #ffffff;
+    border-bottom: 1px solid #ececec;
+}
+
+    .header-top .top-left {
+        float: left;
+    }
+
+@media (max-width: 767px) {
+    .header-top .top-left {
+        float: unset;
+        text-align: center;
+    }
+}
+
+.header-top .top-left h6 {
+    font-size: 15px;
+    line-height: 26px;
+    color: #777777;
+    font-weight: 400;
+    padding: 14px 0px;
+    font-family: "Roboto", sans-serif;
+}
+
+.header-top .top-right {
+    float: right;
+}
+
+@media (max-width: 767px) {
+    .header-top .top-right {
+        float: unset;
+        text-align: center;
+    }
+}
+
+.header-top .top-left .contact-links li {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #b2b2b7;
+    margin-right: 40px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header-top .top-right .social-links {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 767px) {
+    .header-top .top-right .social-links {
+        padding-left: 0;
+    }
+}
+
+.header-top .top-right .social-links li {
+    display: inline-block;
+}
+
+    .header-top .top-right .social-links li i {
+        width: 50px;
+        height: 56px;
+        line-height: 56px;
+        margin: -1px;
+        font-size: 16px;
+        color: #777777;
+        font-weight: 600;
+        text-align: center;
+        border: 1px solid #ececec;
+    }
+
+    .header-top .top-right .social-links li:hover i {
+        color: #7b64cb;
+        border-color: #7b64cb;
+    }
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width:768px) {
+    .container {
+        width: 750px;
+    }
+}

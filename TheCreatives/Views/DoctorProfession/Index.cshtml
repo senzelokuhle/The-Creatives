@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ModelsLogic.DoctorProfesion>
+
+@{
+    ViewBag.Title = "GetDoctorProfessions";
+}
+
+<h2>GetDoctorProfessions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProfId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProfId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProfId })
+        </td>
+    </tr>
+}
+
+</table>

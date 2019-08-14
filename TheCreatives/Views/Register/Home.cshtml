@@ -1,0 +1,193 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<body style="background-image: url('../../Images/backgound.jpg');">
+
+</body>
+
+<div class="container" style="margin-top:1%;padding-left:0px;margin-left:3%">
+    <div class="row">
+        <b class="alert-info">
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-left btn btn-default" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + " [Manage]", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                }
+            }
+            else
+            {
+                <ul class="nav navbar-nav navbar-left hidden">
+                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-sm btn-default" })</li>
+                    <li style="margin-left:4px">@Html.ActionLink("Log in", "Index", "Register", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-sm btn-default" })</li>
+                </ul>
+            }
+        </b>
+    </div>
+</div>
+
+
+    <div class="container" style="margin-top:8%">
+        <div class="row">
+
+            <div class="col-md-4 col-md-offset-4 alert alert-info">
+                    <h3 class="text-center"><strong>Login</strong></h3>
+                <form id="loginForm">
+                    <div id="msg"><ul style="color:red;"> <center>Invalid Username Or Password</center></ul></div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input class="form-control" type="email" name="Email" id="logEmail" placeholder="Email" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input class="form-control" type="password" name="Password" id="logPssword" placeholder="Password" />
+                        </div>
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <button class="btn btn-info form-control" type="submit" onclick="Login()"><i class="glyphicon glyphicon-log-in"></i> Login</button>
+                </div>
+
+                <div class="form-group">
+                    <a style="float:left">Forget Password ? </a>@*<a style="float:right;cursor:pointer" onclick="SignUp()"> Sign Up</a>*@<br />
+
+                    @if (User.Identity == null)
+                    {
+                        @*<a style="float:right;cursor:pointer" onclick="SignUp()"> Sign Up Patient</a><br />*@
+                        <a style="float:right;cursor:pointer;font-size:medium" href="/Account/Login">Admin!</a>
+                    }
+                    else if(User.Identity != null)
+                    {
+                        @*<a style="float:right;cursor:pointer" onclick="SignUp()"> Sign Up Patient</a><br />*@
+                        <a stype="float:right;cursor:pointer;font-size:medium" href="/Account/Login">Admin!</a>
+                    }
+
+                    @*@if (Session["UserID"] == null)
+                    {
+                        <a style="float:right;cursor:pointer" onclick="SignUp()"> Sign Up Patient</a><br />
+                        @*<a class="hidden" style="float:right;cursor:pointer" onclick="SignUp()"> Sign Up</a><br />
+                        <a class="hidden" style="float:right;cursor:pointer;font-size:medium" href="/Account/Login">Admin!</a>
+                    }*@
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+@*Design Modal With Registration form*@
+
+<div class="modal fade" id="ShowModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4>Registration Form</h4>
+                <div id="message1">
+                    <div class="alert alert-success">
+                        <span class="glyphicon glyphicon-ok"></span><strong>
+                            Success Message!<br />
+                            Details sent to patient email address with confirmation link!<br />
+                        </strong>
+                    </div>
+                </div>
+                <div id="message2">
+                    <div class="alert alert-danger">
+                        <span class="glyphicon glyphicon-remove"></span><strong>Error Message! The Registration Is Not Complete</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="Registration">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input class="form-control" type="text" name="Username" id="user" placeholder="Fullname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input class="form-control" type="email" name="Email" id="Email" placeholder="Email" />
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <button class="btn btn-info form-control" type="submit" onclick="SaveForm()"><i class="glyphicon glyphicon-registration-mark"></i> Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function SignUp() {
+        $("#ShowModal").modal();
+        $("#message1").hide();
+        $("#message2").hide();
+    }
+
+    function SaveForm() {
+        var name = $("#user").val();
+        var pwd = $("#Password").val();
+        var email = $("#Email").val();
+
+        if (name == "" || pwd == "" || email == "") {
+            $("#message1").hide();
+            $("#message2").show();
+            return false;
+        }
+        var data = $("#Registration").serialize();
+        $.ajax({
+            type: "post",
+            data: data,
+            url: "/Register/SaveData",
+            success: function (result) {
+
+                $("#message1").show();
+                $("#message2").hide();
+                $("#Registration")[0].reset();
+            }
+        });
+    }
+
+    //Login System
+    $("#msg").hide();
+
+    var Login = function () {
+        var data = $("#loginForm").serialize();
+        $.ajax({
+            type: "post",
+            url: "/Register/CheckValidUser",
+            data: data,
+            success: function (result) {
+                if (result == "Fail") {
+                    $("#loginForm")[0].reset();
+                    $("#msg").show();
+                }
+                else {
+                    window.location.href = "/Register/AfterLogin";
+                    $("#msg").hide();
+                }
+            }
+        })
+    }
+</script>

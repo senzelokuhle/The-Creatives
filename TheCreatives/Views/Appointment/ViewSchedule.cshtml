@@ -1,0 +1,439 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    //Layout = null;
+}
+
+<body>
+    <div href="index.html">
+        <img src="~/Images/logo.png" alt="" width="250">
+        Opening Hours
+        Tuesday to Saturday - 9am to 14pm <span class="pull-right"></span>
+
+
+
+        @if (Request.IsAuthenticated)
+        {
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + " [Manage]", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
+            }
+        }
+        else if (Session["UserID"] != null)
+        {
+            <ul class="nav navbar-nav navbar-right" style="padding-right:3%;padding-top:2%">
+                <li>Hello: @Session["Username"] <span> @Html.ActionLink("Manage      ", "ViewDetails", "Register")<a href="/HomePage/HomePage" class="btn btn-danger">  Logout</a></span></li>
+            </ul>
+           
+        }
+        else
+        {
+            <span style="margin-left:50%">@Html.ActionLink("Log in", "Home", "Register", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-lg btn-default" })</span>
+        }
+    </div>
+
+    <div class="navbar" style="background-color:darkturquoise;margin-top:0%;">
+        <div class="container">
+            @*<div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>*@
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/HomePage/HomePage" style="color:white"><strong>Home</strong></a></li>
+                    <li class="disabled"><a style="color:white" class="disabled"><strong>Specialities</strong></a></li>
+                    <li class="disabled"><a style="color:white" class="disabled"><strong>Expert Doctors</strong></a></li>
+                    <li class="active"><a href="/Home/HomePage" style="color:white"><strong>Book Appointment</strong></a></li>
+                    <li class="disabled"><a style="color:white"><strong>Products</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="~/Images/image1.jpg" alt="Appointment" @*style="width:100%;*@ height:50%">
+                    <div class="carousel-caption">
+                        <center><h2>Appointments Schedule Agenda</h2></center>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</body>
+
+<hr />
+<div id="calender"></div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h4 class="modal-title"><span id="eventTitle"></span></h4></center>
+            </div>
+            <div class="modal-body">
+                <button id="btnDelete" class="btn btn-default btn-sm pull-right" disabled>
+                    <span class="glyphicon glyphicon-remove" disabled></span>Remove
+                </button>
+                <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px">
+                    <span class="glyphicon glyphicon-remove"></span>Edit
+                </button>
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="myModalSave" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center> <h3 class="modal-title">Appointment</h3></center>
+                <p class="alert alert-warning">Note:The maximum time for consultation is 30 min, unless stated otherwise by a doctor!</p>
+
+            </div>
+            <div class="modal-body">
+                <form class="col-md-12 form-horizontal">
+                    <input type="hidden" id="hdEventID" value="0" />
+                    <div class="form-group">
+                        <label>Fullname</label>
+                        <input type="text" id="txtSubject" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cellphone</label>
+                        <input type="text" id="txtCellphone" class=" form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" id="txtEmail" class="form-control" name="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Date/Time</label>
+                        <input type="text" id="txtStart" class=" form-control" disabled />
+
+                    </div>
+                    @*<div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="chkIsFullDay" disabled />Is FullDay Event</label>
+                            </div>
+                        </div>*@
+                    <div class="form-group" id="divEndDate" style="display:none">
+                        <label>End</label>
+                        <input type="text" id="txtEnd" class=" form-control" />
+
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="txtDescription" rows="3" class="form-control" placeholder="(Optional) eg.Check-Up, Prescriptions, ect.)"></textarea>
+                    </div>
+
+                    <button type="button" id="btnSave" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
+
+@section Scripts{
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            var selectedEvent = null;
+
+            FetchEventAndRenderCalender();
+
+            function FetchEventAndRenderCalender() {
+                events = [];
+                $.ajax({
+                    type: "GET",
+                    url: "/Appointment/GetEvents",
+                    success: function (data) {
+                        $.each(data, function (i, v) {
+                            events.push({
+                                eventID: v.EventID,
+                                title: v.Subject,
+                                description: v.Description,
+                                start: moment(v.Start),
+                                end: v.End != null ? moment(v.End) : null,
+                                color: v.ThemeColor,
+                                email: v.Email,
+                                cellphone: v.cellphone,
+                                allDay: v.IsFullDay
+                            });
+                        })
+
+                        GenerateCalender(events);
+                    },
+                    error: function (error) {
+                        alert('failed');
+                    }
+                })
+            }
+
+            function GenerateCalender(events) {
+                $('#calender').fullCalendar('destroy');
+                $('#calender').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    defaultView: 'agenda',
+                    hiddenDays: [0, 1],
+                    minTime: "08:30:00",
+                    maxTime: "14:00:00",
+                    nowIndicator: true,
+
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'agenda'
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+
+                        selectedEvent = calEvent;
+
+                        $('#myModal #eventTitle').text(calEvent.title);
+                        var $description = $('<div/>');
+                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                        if (calEvent.end != null) {
+                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                        }
+                        if (calEvent.description == null) {
+                            $description.append($('<p/>').html('<b>Description:</b>' + "Unspecified"));
+                        }
+                        else {
+                            $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                        }
+
+                        $description.append($('<p/>').html('<b>Email:</b>' + calEvent.email));
+                        $('#myModal #pDetails').empty().html($description);
+
+                        $('#myModal').modal();
+                    },
+                    selectable: true,
+                    select: function (start, end) {
+                        selectedEvent = {
+                            eventID: 0,
+                            title: '',
+                            description: '',
+                            start: start,
+                            end: end,
+                            allDay: false,
+                            email: '',
+                            color: '',
+                            cellphone: ''
+
+
+                        };
+                        openAddEditForm();
+                        $('#calender').fullCalendar('unselected');
+                    },
+                    editable: true,
+                    eventDrop: function (event) {
+                        var data = {
+                            EventID: event.eventID,
+                            Subject: event.title,
+                            Start: event.start.format("DD/MM/YYYY HH:mm A"),
+                            End: event.end != null ? event.end.format("DD/MM/YYYY HH:mm A") : null,
+                            Description: event.description,
+                            Email: event.email,
+                            ThemeColor: event.color,
+                            Cellphone: event.cellphone
+                        };
+                        SaveEvent(data);
+                    }
+                })
+            }
+
+            $("#btnEdit").click(function () {
+                //Open dialog for edit event
+                openAddEditForm();
+            })
+
+            $("#btnDelete").click(function () {
+                if (selectedEvent != null && confirm('Are you sure?')) {
+                    $.ajax({
+                        type: "POST",
+                        data: { 'eventID': selectedEvent.eventID },
+                        url: '/Appointment/DeleteEvent',
+                        success: function (data) {
+                            if (data.status) {
+                                //Refresh the calender
+                                FetchEventAndRenderCalender();
+                                $('#myModal').modal('hide');
+                            }
+                        },
+                        error: function () {
+                            alert('Failed');
+                        }
+                    })
+                }
+            })
+
+
+            $('#dtp1,#dtp2').datetimepicker({
+                format: 'DD/MM/YYYY HH:mm A'
+            });
+
+            $('#chkIsFullDay').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#divEndDate').hide();
+                }
+                else {
+                    $('#divEndDate').show();
+                }
+            });
+
+            function openAddEditForm() {
+                if (selectedEvent != null) {
+                    $('#hdEventID').val(selectedEvent.eventID);
+                    $('#txtSubject').val(selectedEvent.title);
+                    $('#txtEmail').val(selectedEvent.email);
+                    $('#txtStart').val(selectedEvent.start.format('DD/MM/YYYY HH:mm A'));
+                    $('#chkIsFullDay').prop("checked", selectedEvent.allDay || false);
+                    $('#chkIsFullDay').change();
+                    $('#txtEnd').val(selectedEvent.end != null ? selectedEvent.end.format('DD/MM/YYYY HH:mm A') : ' ');
+                    $('#txtDescription').val(selectedEvent.description);
+                    $('#ddThemeColor').val(selectedEvent.color);
+                    $('#txtCellphone').val(selectedEvent.cellphone);
+                }
+                $('#myModal').modal('hide');
+                $('#myModalSave').modal();
+            }
+
+            $('#btnSave').click(function () {
+                //Validate
+                if ($('#txtSubject').val().trim() == "") {
+                    alert('Subject required');
+                    return;
+                }
+
+                if ($('#txtCellphone').val().trim() == "") {
+                    alert('Cellphne required');
+                    return;
+                }
+
+                if ($('#txtStart').val().trim() == "") {
+                    alert('Start Date required');
+                    return;
+                }
+                if ($('#chkIsFullDay').is(':checked') == false && $('#txtEnd').val() == "") {
+                    alert('End date required');
+                    return;
+                } else {
+                    var startDate = moment($('#txtStart').val(), "DD/MM/YYYY HH:mm A").toDate();
+                    var endDate = moment($('#txtEnd').val(), "DD/MM/YYYY HH:mm A").toDate();
+                    if (startDate > endDate) {
+                        alert('Invalid end date');
+                        return;
+                    }
+                }
+
+                var data = {
+                    EventID: $('#hdEventID').val(),
+                    Subject: $('#txtSubject').val().trim(),
+                    Start: $('#txtStart').val().trim(),
+                    End: $('#chkIsFullDay').is(':checked') ? null : $('#txtEnd').val().trim(),
+                    ThemeColor: $('#ddThemeColor').val(),
+                    Email: $('#txtEmail').val().trim(),
+                    Description: $('#txtDescription').val().trim(),
+                    Cellphone: $('#txtCellphone').val().trim(),
+                    IsFullDay: $('#chkIsFullDay').is(':checked')
+                }
+                //call function for submit data to the server
+                SaveEvent(data);
+            })
+
+            function SaveEvent(data) {
+                $.ajax({
+                    type: "POST",
+                    url: '/Appointment/SaveEvent',
+                    data: data,
+                    success: function (data) {
+                        if (data.status) {
+                            //Refresh the calender
+                            FetchEventAndRenderCalender();
+                            $('#myModalSave').modal('hide');
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
+                    }
+                })
+            }
+
+
+            $(function () {
+
+                $("#newModalForm").validate({
+                    rules: {
+                        pName: {
+                            required: true,
+                            minlength: 8
+                        },
+                        action: "required"
+                    },
+                    messages: {
+                        pName: {
+                            required: "Please enter some data",
+                            minlength: "Your data must be at least 8 characters"
+                        },
+                        action: "Please provide some data"
+                    }
+                });
+            });
+        })
+    </script>
+}
