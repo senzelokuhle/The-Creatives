@@ -7,7 +7,7 @@ namespace ModelsLogic
     {
         [Key]
         public int DoctorId { get; set; }
-        [DisplayName("Fullame")]
+        [DisplayName("Fullname")]
         public string Name { get; set; }
         public int ProfId { get; set; }
         public virtual DoctorProfesion profession { get; set; }
