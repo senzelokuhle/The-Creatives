@@ -11,7 +11,7 @@ namespace ModelsLogic
         [Key]
         public int EventID { get; set; }
 
-        [Display(Name = "Fullname")]
+        [Display(Name = "Fullame")]
         [Required]
         public string Subject { get; set; }
 
